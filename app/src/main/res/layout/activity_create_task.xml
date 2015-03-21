@@ -23,13 +23,12 @@
                 android:paddingBottom="2dp"
                 android:paddingLeft="15dp"/>
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewPagerVerb"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_gravity="center">
+                android:layout_height="140dp">
 
-            </android.support.v4.view.ViewPager>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -73,8 +72,17 @@
 
                     <Button
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_height="40dp"
+                        android:text="@string/cta_today"
+                        android:background="@drawable/selector_act_bottom"
+                        android:layout_margin="5dp"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="@string/cta_morning"
+                        android:background="@drawable/selector_act_bottom"
+                        android:layout_margin="5dp"/>
 
                 </LinearLayout>
 

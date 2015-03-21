@@ -9,7 +9,9 @@
     <string name="cta_verb">VERBO</string>
     <string name="cta_object">OBJETO</string>
     <string name="cta_data_time">FECHA | HORA</string>
-    <string name="cta_today"></string>
-    <string name="cta_morning"></string>
+    <string name="cta_today">HOY</string>
+    <string name="cta_morning">MAÑANA</string>
+
     <!-- -->
+
 </resources>

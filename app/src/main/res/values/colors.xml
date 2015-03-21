@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- General -->
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
     <!-- Create Task Activity  -->
     <color name="cta_btn">#e74c3c</color>
     <color name="cta_btn_pressed">#c0392b</color>
+    <color name="cta_inputs_btn">#e6e6e6</color>
+    <color name="cta_inputs_btn_pressed">#e8a52a</color>
 
 </resources>

@@ -44,7 +44,8 @@
                 android:textStyle="bold"
                 android:paddingTop="2dp"
                 android:paddingBottom="2dp"
-                android:paddingLeft="15dp" />
+                android:paddingLeft="15dp"
+                android:background="@color/cta_silver"/>
 
 
             <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -54,10 +55,11 @@
                 android:fillViewport="true">
 
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:id="@+id/linearLayoutVerb"
+                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:padding="2dp">
 
                 </LinearLayout>
 
@@ -72,7 +74,8 @@
                 android:textStyle="bold"
                 android:paddingTop="2dp"
                 android:paddingBottom="2dp"
-                android:paddingLeft="15dp" />
+                android:paddingLeft="15dp"
+                android:background="@color/cta_silver"/>
 
             <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tool"
@@ -81,10 +84,11 @@
                 android:fillViewport="true">
 
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:id="@+id/linearLayoutObject"
+                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:padding="2dp">
 
                 </LinearLayout>
 
@@ -155,56 +159,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|top">
-
-        <LinearLayout
-            android:id="@+id/register_verb"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="10dp">
-
-            <EditText
-                android:id="@+id/edit_text_verb_name"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:hint="@string/cta_hint_verb_name"
-                android:padding="10dp"/>
-
-            <ImageView
-                android:id="@+id/image_view_register_verb"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:background="@drawable/selector_act_register"
-                android:src="@drawable/ic_register"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/register_object"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="10dp">
-
-            <EditText
-                android:id="@+id/edit_text_object_name"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:hint="@string/cta_hint_verb_name"
-                android:padding="10dp"/>
-
-            <ImageView
-                android:id="@+id/image_view_register_object"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:background="@drawable/selector_act_register"
-                android:src="@drawable/ic_register"/>
-
-        </LinearLayout>
 
     </LinearLayout>
 

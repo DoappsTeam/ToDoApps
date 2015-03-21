@@ -12,5 +12,6 @@
     <color name="cta_inputs_btn_pressed">#e8a52a</color>
     <color name="cta_register">#2ecc71</color>
     <color name="cta_register_pressed">#27ae60</color>
+    <color name="cta_silver">#bdc3c7</color>
 
 </resources>

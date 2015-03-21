@@ -2,6 +2,7 @@ package me.doapps.todoapps.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -17,8 +18,10 @@ public class DataBaseManager {
     private static final String TABLE_TASK = "task";
 
     private static final String ID = "_id";
-    private static final String VERD_ID = "verbId";
+    private static final String VERB_ID = "verbId";
     private static final String OBJECT_ID = "objectId";
+    private static final String VERB_NAME = "verbName";
+    private static final String OBJECT_NAME = "objectName";
 
     private static final String NAME = "name";
     private static final String RATE = "rate";
@@ -41,7 +44,7 @@ public class DataBaseManager {
             + CREATED + " text,"
             + UPDATED + " text,"
             + STATE + " integer);";
-    public static final String CREATE_TABLE_TASK = "create table " + TABLE_OBJECT + " ("
+    public static final String CREATE_TABLE_TASK = "create table " + TABLE_TASK + " ("
             + ID + " integer primary key autoincrement,"
             + NAME + " text not null,"
             + RATE + " integer,"
@@ -49,12 +52,14 @@ public class DataBaseManager {
             + CREATED + " text,"
             + UPDATED + " text,"
             + STATE + " integer,"
-            + VERD_ID + " integer,"
-            + OBJECT_ID + " integer);";
+            + VERB_ID + " integer,"
+            + OBJECT_ID + " integer,"
+            + VERB_NAME + " text,"
+            + OBJECT_NAME + " text);";
 
     public static final String DROP_TABLE_VERB = "drop table if exist " + TABLE_VERB;
-    public static final String DROP_TABLE_OBJECT = "drop table if exist "+ TABLE_OBJECT;
-    public static final String DROP_TABLE_TASK = "drop table if exist "+ TABLE_TASK;
+    public static final String DROP_TABLE_OBJECT = "drop table if exist " + TABLE_OBJECT;
+    public static final String DROP_TABLE_TASK = "drop table if exist " + TABLE_TASK;
 
     private DataBaseHelper helper;
     private SQLiteDatabase db;
@@ -63,9 +68,42 @@ public class DataBaseManager {
     SimpleDateFormat formater_simple = new SimpleDateFormat("dd/MM/yyyy");
     Calendar calendar = Calendar.getInstance();
 
-    public DataBaseManager(Context context){
+    public DataBaseManager(Context context) {
         helper = new DataBaseHelper(context);
         db = helper.getWritableDatabase();
+    }
+
+    /*generate ContentValues*/
+    private ContentValues contentValuesTask(String name, int rate, String duedate, String created, String updated, int state, int verbId, int objectId, String verbname, String objectName) {
+        ContentValues values = new ContentValues();
+        values.put(NAME, name);
+        values.put(RATE, rate);
+        values.put(DUEDATE, duedate);
+        values.put(CREATED, created);
+        values.put(UPDATED, updated);
+        values.put(STATE, state);
+        values.put(VERB_ID, verbId);
+        values.put(OBJECT_ID, objectId);
+        values.put(VERB_NAME, verbname);
+        values.put(OBJECT_NAME, objectName);
+        return values;
+    }
+
+    public Cursor selectTask(){
+        String[] columns = new String[]{ID, NAME, VERB_NAME, OBJECT_NAME, DUEDATE};
+        return db.query(TABLE_TASK,columns,STATE+"=?",new String[]{"1"},null, null, null);
+    }
+
+    public void insertTask(String name){
+        String created_at = formater.format(calendar.getTime());
+        String updated_at = formater.format(calendar.getTime());
+        db.insert(TABLE_TASK, null, contentValuesTask(name, 0, created_at, created_at, updated_at, 1, 1, 1, "Barrer", "Sala"));
+    }
+
+    public void updateTask(String id, String state){
+        ContentValues values = new ContentValues();
+        values.put(STATE, state);
+        db.update(TABLE_TASK, values, ID+"=?", new String[]{id});
     }
 
     public boolean insertVerb(String name, int rate, int state){
@@ -107,7 +145,7 @@ public class DataBaseManager {
                 return false;
             }
         }catch(Exception e){
-            Log.e("DBM","insertObject "+e.toString());
+            Log.e("DBM", "insertObject " + e.toString());
             return false;
         }
     }
@@ -124,7 +162,7 @@ public class DataBaseManager {
             contentValues.put(CREATED, created_at);
             contentValues.put(UPDATED, updated_at);
             contentValues.put(STATE, state);
-            contentValues.put(VERD_ID, verbId);
+            contentValues.put(VERB_ID, verbId);
             contentValues.put(OBJECT_ID, objectId);
             if(db.insert(TABLE_TASK, null, contentValues)!=-1){
                 return true;
@@ -134,6 +172,26 @@ public class DataBaseManager {
         }catch(Exception e){
             Log.e("DBM","insertObject "+e.toString());
             return false;
+        }
+    }
+
+    public Cursor selectVerbs(){
+        try {
+            Cursor c=db.rawQuery("SELECT "+NAME+" FROM "+TABLE_VERB+" WHERE "+STATE+" =1 ORDER BY 1 DESC", null);
+            return c;
+        } catch(Exception e){
+            Log.e("ERROR DBM - selectPublicity", e.toString());
+            return null;
+        }
+    }
+
+    public Cursor selectObjects(){
+        try {
+            Cursor c=db.rawQuery("SELECT "+NAME+" FROM "+TABLE_OBJECT+" WHERE "+STATE+" =1 ORDER BY 1 DESC", null);
+            return c;
+        } catch(Exception e){
+            Log.e("ERROR DBM - selectPublicity", e.toString());
+            return null;
         }
     }
 }

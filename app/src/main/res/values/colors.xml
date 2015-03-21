@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Flat colors -->
+    <color name="yellow">#f1c40f</color>
+    <color name="yellow_light">#99ffe942</color>
+    <color name="red">#e74c3c</color>
+    <color name="red_light">#ff776b</color>
+    <color name="green">#2ecc71</color>
+    <color name="green_light">#995cf79a</color>
+
+    <color name="color_actionbar">#41ACE2</color>
+    <color name="color_fab_dark">#A63B3D</color>
+    <color name="color_fab">#EA5355</color>
 
     <!-- General -->
     <color name="white">#ffffff</color>

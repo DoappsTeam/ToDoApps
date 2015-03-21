@@ -16,4 +16,8 @@
     <string name="register_verb">Registrar verbo</string>
     <string name="register_object">Registrar Objeto</string>
 
+    <!-- ListTasck -->
+    <string name="options">Esta tarea será ...</string>
+
+
 </resources>

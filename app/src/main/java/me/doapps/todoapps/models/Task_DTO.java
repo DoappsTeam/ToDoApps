@@ -6,17 +6,19 @@ package me.doapps.todoapps.models;
 public class Task_DTO {
     private int taskId;
     private String taskName;
-    private String taskRate;
+    private int taskRate;
     private String taskDueDate;
     private String taskCreatedAt;
     private String taskUpdatedAt;
-    private String taskState;
+    private int taskState;
     private int verbId;
     private int objectId;
+    private String verbName;
+    private String objectName;
 
     public Task_DTO(){}
 
-    public Task_DTO(int taskId, String taskName, String taskCreatedAt, String taskUpdatedAt, String taskRate, String taskDueDate, String taskState, int verbId, int objectId) {
+    public Task_DTO(int taskId, String taskName, String taskCreatedAt, String taskUpdatedAt, int taskRate, String taskDueDate, int taskState, int verbId, int objectId) {
         this.taskId = taskId;
         this.taskName = taskName;
         this.taskCreatedAt = taskCreatedAt;
@@ -26,6 +28,20 @@ public class Task_DTO {
         this.taskState = taskState;
         this.verbId = verbId;
         this.objectId = objectId;
+    }
+
+    public Task_DTO(int taskId, String taskName, String taskDueDate, String taskUpdatedAt, String objectName, String verbName, int objectId, int verbId, int taskState, int taskRate, String taskCreatedAt) {
+        this.taskId = taskId;
+        this.taskName = taskName;
+        this.taskDueDate = taskDueDate;
+        this.taskUpdatedAt = taskUpdatedAt;
+        this.objectName = objectName;
+        this.verbName = verbName;
+        this.objectId = objectId;
+        this.verbId = verbId;
+        this.taskState = taskState;
+        this.taskRate = taskRate;
+        this.taskCreatedAt = taskCreatedAt;
     }
 
     public int getTaskId() {
@@ -60,11 +76,11 @@ public class Task_DTO {
         this.taskUpdatedAt = taskUpdatedAt;
     }
 
-    public String getTaskRate() {
+    public int getTaskRate() {
         return taskRate;
     }
 
-    public void setTaskRate(String taskRate) {
+    public void setTaskRate(int taskRate) {
         this.taskRate = taskRate;
     }
 
@@ -76,11 +92,11 @@ public class Task_DTO {
         this.taskDueDate = taskDueDate;
     }
 
-    public String getTaskState() {
+    public int getTaskState() {
         return taskState;
     }
 
-    public void setTaskState(String taskState) {
+    public void setTaskState(int taskState) {
         this.taskState = taskState;
     }
 
@@ -98,5 +114,21 @@ public class Task_DTO {
 
     public void setObjectId(int objectId) {
         this.objectId = objectId;
+    }
+
+    public String getVerbName() {
+        return verbName;
+    }
+
+    public void setVerbName(String verbName) {
+        this.verbName = verbName;
+    }
+
+    public String getObjectName() {
+        return objectName;
+    }
+
+    public void setObjectName(String objectName) {
+        this.objectName = objectName;
     }
 }

@@ -73,6 +73,95 @@ public class DataBaseManager {
         db = helper.getWritableDatabase();
     }
 
+    public boolean insertVerb(String name, int rate, int state) {
+        try {
+            String created_at = formater.format(calendar.getTime());
+            String updated_at = formater.format(calendar.getTime());
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(NAME, name);
+            contentValues.put(RATE, rate);
+            contentValues.put(CREATED, created_at);
+            contentValues.put(UPDATED, updated_at);
+            contentValues.put(STATE, state);
+            if (db.insert(TABLE_VERB, null, contentValues) != -1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            Log.e("DBM", "insertVerb " + e.toString());
+            return false;
+        }
+    }
+
+    public boolean insertObject(String name, int rate, int state) {
+        try {
+            String created_at = formater.format(calendar.getTime());
+            String updated_at = formater.format(calendar.getTime());
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(NAME, name);
+            contentValues.put(RATE, rate);
+            contentValues.put(CREATED, created_at);
+            contentValues.put(UPDATED, updated_at);
+            contentValues.put(STATE, state);
+            if (db.insert(TABLE_OBJECT, null, contentValues) != -1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            Log.e("DBM", "insertObject " + e.toString());
+            return false;
+        }
+    }
+
+    public boolean insertTask(String name, int rate, String duedate, int state, int verbId, int objectId) {
+        try {
+            String created_at = formater.format(calendar.getTime());
+            String updated_at = formater.format(calendar.getTime());
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(NAME, name);
+            contentValues.put(RATE, rate);
+            contentValues.put(DUEDATE, duedate);
+            contentValues.put(CREATED, created_at);
+            contentValues.put(UPDATED, updated_at);
+            contentValues.put(STATE, state);
+            contentValues.put(VERB_ID, verbId);
+            contentValues.put(OBJECT_ID, objectId);
+            if (db.insert(TABLE_TASK, null, contentValues) != -1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            Log.e("DBM", "insertObject " + e.toString());
+            return false;
+        }
+    }
+
+    public Cursor selectVerbs() {
+        try {
+            Cursor c = db.rawQuery("SELECT " + NAME + " FROM " + TABLE_VERB + " WHERE " + STATE + " =1 ORDER BY 1 DESC", null);
+            return c;
+        } catch (Exception e) {
+            Log.e("ERROR DBM - selectPublicity", e.toString());
+            return null;
+        }
+    }
+
+    public Cursor selectObjects() {
+        try {
+            Cursor c = db.rawQuery("SELECT " + NAME + " FROM " + TABLE_OBJECT + " WHERE " + STATE + " =1 ORDER BY 1 DESC", null);
+            return c;
+        } catch (Exception e) {
+            Log.e("ERROR DBM - selectPublicity", e.toString());
+            return null;
+        }
+    }
+
     /*generate ContentValues*/
     private ContentValues contentValuesTask(String name, int rate, String duedate, String created, String updated, int state, int verbId, int objectId, String verbname, String objectName) {
         ContentValues values = new ContentValues();
@@ -89,109 +178,26 @@ public class DataBaseManager {
         return values;
     }
 
-    public Cursor selectTask(){
-        String[] columns = new String[]{ID, NAME, VERB_NAME, OBJECT_NAME, DUEDATE};
-        return db.query(TABLE_TASK,columns,STATE+"=?",new String[]{"1"},null, null, null);
+    public Cursor selectTask() {
+        String[] columns = new String[]{ID, NAME, VERB_NAME, OBJECT_NAME, DUEDATE, STATE};
+        return db.query(TABLE_TASK, columns, STATE + "=?", new String[]{"1"}, null, null, null);
     }
 
-    public void insertTask(String name){
+    public Cursor selectTaskByState() {
+        String[] args = new String[]{"1", "2"};
+        Cursor c = db.rawQuery(" SELECT * FROM task WHERE state=? ", args);
+        return c;
+    }
+
+    public void insertTask(String name) {
         String created_at = formater.format(calendar.getTime());
         String updated_at = formater.format(calendar.getTime());
         db.insert(TABLE_TASK, null, contentValuesTask(name, 0, created_at, created_at, updated_at, 1, 1, 1, "Barrer", "Sala"));
     }
 
-    public void updateTask(String id, String state){
+    public void updateTask(String id, String state) {
         ContentValues values = new ContentValues();
         values.put(STATE, state);
-        db.update(TABLE_TASK, values, ID+"=?", new String[]{id});
-    }
-
-    public boolean insertVerb(String name, int rate, int state){
-        try {
-            String created_at = formater.format(calendar.getTime());
-            String updated_at = formater.format(calendar.getTime());
-
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(NAME, name);
-            contentValues.put(RATE, rate);
-            contentValues.put(CREATED, created_at);
-            contentValues.put(UPDATED, updated_at);
-            contentValues.put(STATE, state);
-            if(db.insert(TABLE_VERB, null, contentValues)!=-1){
-                return true;
-            }else{
-                return false;
-            }
-        }catch(Exception e){
-            Log.e("DBM","insertVerb "+e.toString());
-            return false;
-        }
-    }
-
-    public boolean insertObject(String name, int rate, int state){
-        try {
-            String created_at = formater.format(calendar.getTime());
-            String updated_at = formater.format(calendar.getTime());
-
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(NAME, name);
-            contentValues.put(RATE, rate);
-            contentValues.put(CREATED, created_at);
-            contentValues.put(UPDATED, updated_at);
-            contentValues.put(STATE, state);
-            if(db.insert(TABLE_OBJECT, null, contentValues)!=-1){
-                return true;
-            }else{
-                return false;
-            }
-        }catch(Exception e){
-            Log.e("DBM", "insertObject " + e.toString());
-            return false;
-        }
-    }
-
-    public boolean insertTask(String name, int rate, String duedate, int state, int verbId, int objectId){
-        try {
-            String created_at = formater.format(calendar.getTime());
-            String updated_at = formater.format(calendar.getTime());
-
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(NAME, name);
-            contentValues.put(RATE, rate);
-            contentValues.put(DUEDATE, duedate);
-            contentValues.put(CREATED, created_at);
-            contentValues.put(UPDATED, updated_at);
-            contentValues.put(STATE, state);
-            contentValues.put(VERB_ID, verbId);
-            contentValues.put(OBJECT_ID, objectId);
-            if(db.insert(TABLE_TASK, null, contentValues)!=-1){
-                return true;
-            }else{
-                return false;
-            }
-        }catch(Exception e){
-            Log.e("DBM","insertObject "+e.toString());
-            return false;
-        }
-    }
-
-    public Cursor selectVerbs(){
-        try {
-            Cursor c=db.rawQuery("SELECT "+NAME+" FROM "+TABLE_VERB+" WHERE "+STATE+" =1 ORDER BY 1 DESC", null);
-            return c;
-        } catch(Exception e){
-            Log.e("ERROR DBM - selectPublicity", e.toString());
-            return null;
-        }
-    }
-
-    public Cursor selectObjects(){
-        try {
-            Cursor c=db.rawQuery("SELECT "+NAME+" FROM "+TABLE_OBJECT+" WHERE "+STATE+" =1 ORDER BY 1 DESC", null);
-            return c;
-        } catch(Exception e){
-            Log.e("ERROR DBM - selectPublicity", e.toString());
-            return null;
-        }
+        db.update(TABLE_TASK, values, ID + "=?", new String[]{id});
     }
 }

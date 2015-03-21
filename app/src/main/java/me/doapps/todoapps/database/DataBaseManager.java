@@ -73,6 +73,7 @@ public class DataBaseManager {
         db = helper.getWritableDatabase();
     }
 
+    /*Querys CreateTask*/
     public boolean insertVerb(String name, int rate, int state) {
         try {
             String created_at = formater.format(calendar.getTime());
@@ -162,7 +163,7 @@ public class DataBaseManager {
         }
     }
 
-    /*generate ContentValues*/
+    /*Querys ListTask*/
     private ContentValues contentValuesTask(String name, int rate, String duedate, String created, String updated, int state, int verbId, int objectId, String verbname, String objectName) {
         ContentValues values = new ContentValues();
         values.put(NAME, name);
@@ -200,4 +201,7 @@ public class DataBaseManager {
         values.put(STATE, state);
         db.update(TABLE_TASK, values, ID + "=?", new String[]{id});
     }
+
+
+
 }

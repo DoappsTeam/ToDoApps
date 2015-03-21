@@ -5,4 +5,11 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <!-- Create Task Asctivity -->
+    <string name="cta_verb">VERBO</string>
+    <string name="cta_object">OBJETO</string>
+    <string name="cta_data_time">FECHA | HORA</string>
+    <string name="cta_today"></string>
+    <string name="cta_morning"></string>
+    <!-- -->
 </resources>

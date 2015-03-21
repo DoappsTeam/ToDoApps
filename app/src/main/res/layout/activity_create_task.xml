@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,15 +9,95 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height=""></LinearLayout>
+                android:layout_height="wrap_content"
+                android:text="@string/cta_verb"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingLeft="15dp"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPagerVerb"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_gravity="center">
+
+            </android.support.v4.view.ViewPager>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cta_object"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingLeft="15dp"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPagerObject"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_gravity="center">
+
+            </android.support.v4.view.ViewPager>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cta_data_time"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingLeft="15dp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/viewPagerDateTime"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_gravity="center">
+                
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="140dp">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="140dp">
+
+                </LinearLayout>
+                
+            </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
 
-</RelativeLayout>
+    <ImageButton
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:src="@drawable/ic_add_task"
+        android:background="@drawable/selector_act_add"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"/>
+
+</FrameLayout>

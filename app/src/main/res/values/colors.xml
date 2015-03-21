@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Create Task Activity  -->
+    <color name="cta_btn">#e74c3c</color>
+    <color name="cta_btn_pressed">#c0392b</color>
+
+</resources>

@@ -1,4 +1,4 @@
-package doapps.me.todoapps.database;
+package me.doapps.todoapps.database;
 
 /**
  * Created by jonathan on 21/03/2015.

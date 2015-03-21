@@ -1,4 +1,4 @@
-package doapps.me.todoapps.models;
+package me.doapps.todoapps.models;
 
 /**
  * Created by jonathan on 21/03/2015.

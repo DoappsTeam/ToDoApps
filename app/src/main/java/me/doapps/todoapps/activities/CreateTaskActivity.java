@@ -65,9 +65,12 @@ public class CreateTaskActivity extends ActionBarActivity {
             public void onClick(View v) {
                 try {
                     String verb = editTextVerb.getText().toString();
-
-                    //dataBaseManager.insertVerb()
-                    linearLayoutRegisterVerb.setVisibility(View.GONE);
+                    if(verb!=null && verb.equals(" ") && verb.equals("")){
+                        dataBaseManager.insertVerb(verb,0,1);
+                        linearLayoutRegisterVerb.setVisibility(View.GONE);
+                    }else{
+                        Toast.makeText(CreateTaskActivity.this,"Ingrese un verbo adecuadamente",Toast.LENGTH_SHORT).show();
+                    }
                 } catch(Exception e){
                     Toast.makeText(CreateTaskActivity.this,"Ingrese un verbo adecuadamente",Toast.LENGTH_SHORT).show();
                 }
@@ -78,6 +81,17 @@ public class CreateTaskActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 linearLayoutRegisterObject.setVisibility(View.GONE);
+                try {
+                    String object = editTextVerb.getText().toString();
+                    if(object!=null && object.equals(" ") && object.equals("")){
+                        dataBaseManager.insertVerb(object,0,1);
+                        linearLayoutRegisterVerb.setVisibility(View.GONE);
+                    }else{
+                        Toast.makeText(CreateTaskActivity.this,"Ingrese un objeto adecuadamente",Toast.LENGTH_SHORT).show();
+                    }
+                } catch(Exception e){
+                    Toast.makeText(CreateTaskActivity.this,"Ingrese un objeto adecuadamente",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

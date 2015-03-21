@@ -26,7 +26,7 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="140dp">
+                android:layout_height="168dp">
 
             </LinearLayout>
 
@@ -72,7 +72,7 @@
 
                     <Button
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:layout_height="35dp"
                         android:text="@string/cta_today"
                         android:background="@drawable/selector_act_bottom"
                         android:layout_margin="5dp"/>

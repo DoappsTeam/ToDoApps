@@ -1,7 +1,9 @@
 package me.doapps.todoapps.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -64,5 +66,74 @@ public class DataBaseManager {
     public DataBaseManager(Context context){
         helper = new DataBaseHelper(context);
         db = helper.getWritableDatabase();
+    }
+
+    public boolean insertVerb(String name, int rate, int state){
+        try {
+            String created_at = formater.format(calendar.getTime());
+            String updated_at = formater.format(calendar.getTime());
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(NAME, name);
+            contentValues.put(RATE, rate);
+            contentValues.put(CREATED, created_at);
+            contentValues.put(UPDATED, updated_at);
+            contentValues.put(STATE, state);
+            if(db.insert(TABLE_VERB, null, contentValues)!=-1){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(Exception e){
+            Log.e("DBM","insertVerb "+e.toString());
+            return false;
+        }
+    }
+
+    public boolean insertObject(String name, int rate, int state){
+        try {
+            String created_at = formater.format(calendar.getTime());
+            String updated_at = formater.format(calendar.getTime());
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(NAME, name);
+            contentValues.put(RATE, rate);
+            contentValues.put(CREATED, created_at);
+            contentValues.put(UPDATED, updated_at);
+            contentValues.put(STATE, state);
+            if(db.insert(TABLE_OBJECT, null, contentValues)!=-1){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(Exception e){
+            Log.e("DBM","insertObject "+e.toString());
+            return false;
+        }
+    }
+
+    public boolean insertTask(String name, int rate, String duedate, int state, int verbId, int objectId){
+        try {
+            String created_at = formater.format(calendar.getTime());
+            String updated_at = formater.format(calendar.getTime());
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(NAME, name);
+            contentValues.put(RATE, rate);
+            contentValues.put(DUEDATE, duedate);
+            contentValues.put(CREATED, created_at);
+            contentValues.put(UPDATED, updated_at);
+            contentValues.put(STATE, state);
+            contentValues.put(VERD_ID, verbId);
+            contentValues.put(OBJECT_ID, objectId);
+            if(db.insert(TABLE_TASK, null, contentValues)!=-1){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(Exception e){
+            Log.e("DBM","insertObject "+e.toString());
+            return false;
+        }
     }
 }

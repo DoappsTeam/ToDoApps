@@ -1,54 +1,174 @@
 package me.doapps.todoapps.activities;
 
-import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-
-import com.viewpagerindicator.CirclePageIndicator;
+import android.widget.EditText;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import doapps.me.todoapps.R;
-import me.doapps.todoapps.adapters.ContainerFragment;
-import me.doapps.todoapps.models.Values;
+import me.doapps.todoapps.database.DataBaseManager;
 
 
 public class CreateTaskActivity extends ActionBarActivity {
 
-    ArrayList<Values> arrayValues;
-    private FragmentAdapter fragmentAdapter;
-    private ViewPager viewPager;
-    private CirclePageIndicator circlePageIndicator;
-    Handler handler;
-    Runnable update;
+    LinearLayout linearLayoutVerb, linearLayoutObject, linearLayoutRegisterVerb, linearLayoutRegisterObject;
 
-    Button verbSelected, objectSelected;
+    TextView textViewVerb, textViewObject;
+
+    ImageView imageViewRegisterVerb, imageViewRegisterObject;
+
+    EditText editTextVerb, editTextObject;
 
     ArrayList<String> verbs = new ArrayList<>();
     ArrayList<String> objects = new ArrayList<>();
+
+    DataBaseManager dataBaseManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_task);
 
-        arrayValues = new ArrayList<>();
+        dataBaseManager = new DataBaseManager(CreateTaskActivity.this);
 
-        Values values = new Values();
-        values.addValue("Programar");
-        values.addValue("Tomar Café");
-        values.addValue("Diseñar");
-        values.addValue("Dormir");
-        arrayValues.add(values);
+        linearLayoutVerb = (LinearLayout) findViewById(R.id.linearLayoutVerb);
+        linearLayoutObject = (LinearLayout) findViewById(R.id.linearLayoutObject);
+        linearLayoutRegisterVerb= (LinearLayout) findViewById(R.id.linearLayoutObject);
+        linearLayoutRegisterObject= (LinearLayout) findViewById(R.id.linearLayoutObject);
+
+        textViewVerb = (TextView) findViewById(R.id.textViewVerb);
+        textViewObject= (TextView) findViewById(R.id.textViewObject);
+
+        linearLayoutRegisterVerb.setVisibility(View.GONE);
+        linearLayoutRegisterObject.setVisibility(View.GONE);
+
+        imageViewRegisterVerb = (ImageView) findViewById(R.id.image_view_register_verb);
+        imageViewRegisterObject= (ImageView) findViewById(R.id.image_view_register_verb);
+
+        editTextVerb = (EditText) findViewById(R.id.edit_text_verb_name);
+        editTextObject = (EditText) findViewById(R.id.edit_text_object_name);
+
+        imageViewRegisterVerb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    String verb = editTextVerb.getText().toString();
+
+                    //dataBaseManager.insertVerb()
+                    linearLayoutRegisterVerb.setVisibility(View.GONE);
+                } catch(Exception e){
+                    Toast.makeText(CreateTaskActivity.this,"Ingrese un verbo adecuadamente",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        imageViewRegisterObject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearLayoutRegisterObject.setVisibility(View.GONE);
+            }
+        });
+
+        textViewVerb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearLayoutVerb.setVisibility(View.VISIBLE);
+            }
+        });
+
+        textViewObject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearLayoutObject.setVisibility(View.VISIBLE);
+            }
+        });
+
+        verbs = new ArrayList<>();
+
+        verbs.add("Programar");
+        verbs.add("Tomar");
+        verbs.add("Diseñar");
+        verbs.add("Dormir");
+        verbs.add("Programar");
+        verbs.add("Tomar");
+        verbs.add("Diseñar");
+        verbs.add("Dormir");
+        verbs.add("Programar");
+        verbs.add("Tomar");
+        verbs.add("Diseñar");
+        verbs.add("Dormir");
+        verbs.add("Dormir2");
+
+        objects.add("Laptop");
+        objects.add("Celular");
+        objects.add("Café");
+        objects.add("Cama");
+        objects.add("Sofa");
+        objects.add("Laptop");
+        objects.add("Celular");
+        objects.add("Café");
+        objects.add("Cama");
+        objects.add("Sofa");
+        objects.add("Laptop");
+        objects.add("Celular");
+        objects.add("Café");
+        objects.add("Cama");
+        objects.add("Sofa");
+
+        Button buttonVerbs;
+        int rowsVerbs = 0;
+        for(int i=0; i<verbs.size()/3+1; i++){
+            LinearLayout column = new LinearLayout(CreateTaskActivity.this);
+            column.setOrientation(LinearLayout.VERTICAL);
+            for(int j=0; j<3; j++){
+                if(rowsVerbs<verbs.size()){
+                    buttonVerbs = new Button(CreateTaskActivity.this);
+                    Log.e("show",verbs.get(rowsVerbs)+"-"+rowsVerbs);
+                    buttonVerbs.setText(verbs.get(rowsVerbs));
+                    buttonVerbs.setPadding(2,2,2,2);
+                    buttonVerbs.setBackgroundResource(R.drawable.selector_act_bottom);
+                column.addView(buttonVerbs);
+                    rowsVerbs++;
+                }else{
+                    break;
+                }
+            }
+            linearLayoutVerb.addView(column);
+        }rowsVerbs = 0;
+
+        Button buttonObject;
+        int rowsObject =0;
+        for(int i=0; i<verbs.size()/3+1; i++){
+            LinearLayout column = new LinearLayout(CreateTaskActivity.this);
+            column.setOrientation(LinearLayout.VERTICAL);
+            for(int j=0; j<3; j++){
+                if(rowsObject<verbs.size()){
+                    buttonObject = new Button(CreateTaskActivity.this);
+                    Log.e("show",verbs.get(rowsObject)+"-"+rowsObject);
+                    buttonObject.setText(verbs.get(rowsObject));
+                    buttonObject.setPadding(2,2,2,2);
+                    buttonObject.setBackgroundResource(R.drawable.selector_act_bottom);
+                    column.addView(buttonObject);
+                    rowsObject++;
+                }else{
+                    break;
+                }
+            }
+            linearLayoutVerb.addView(column);
+        }rowsObject = 0;
+
     }
 
 
@@ -72,32 +192,6 @@ public class CreateTaskActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public class FragmentAdapter extends FragmentPagerAdapter {
-
-        public FragmentAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return ContainerFragment.newInstance(arrayValues.get(position));
-        }
-
-        @Override
-        public int getCount() {
-            return arrayValues.size();
-        }
-
-        @Override
-        public void destroyItem(View container, int position, Object object) {
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-        }
-
     }
 
 }

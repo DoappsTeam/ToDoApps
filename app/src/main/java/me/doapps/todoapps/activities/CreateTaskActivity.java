@@ -24,13 +24,14 @@ import doapps.me.todoapps.R;
 import me.doapps.todoapps.database.DataBaseManager;
 
 
-public class CreateTaskActivity extends ActionBarActivity {
+public class CreateTaskActivity extends ActionBarActivity implements View.OnClickListener {
 
     LinearLayout linearLayoutVerb, linearLayoutObject, linearLayoutRegisterVerb, linearLayoutRegisterObject;
 
     TextView textViewVerb, textViewObject;
 
     DataBaseManager dataBaseManager;
+    Button btnCustomDate;
 
     final static String TAG = CreateTaskActivity.class.getCanonicalName();
 
@@ -48,6 +49,9 @@ public class CreateTaskActivity extends ActionBarActivity {
 
         textViewVerb = (TextView) findViewById(R.id.textViewVerb);
         textViewObject= (TextView) findViewById(R.id.textViewObject);
+        btnCustomDate = (Button) findViewById(R.id.btnCustomDate);
+
+        btnCustomDate.setOnClickListener(this);
 
         textViewVerb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,4 +220,8 @@ public class CreateTaskActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }

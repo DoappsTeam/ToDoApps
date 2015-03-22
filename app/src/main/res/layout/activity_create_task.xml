@@ -45,7 +45,7 @@
                 android:paddingTop="2dp"
                 android:paddingBottom="2dp"
                 android:paddingLeft="15dp"
-                android:background="@color/cta_silver"/>
+                android:background="@color/cta_silver" />
 
 
             <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -75,7 +75,7 @@
                 android:paddingTop="2dp"
                 android:paddingBottom="2dp"
                 android:paddingLeft="15dp"
-                android:background="@color/cta_silver"/>
+                android:background="@color/cta_silver" />
 
             <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tool"
@@ -108,36 +108,31 @@
                 android:orientation="horizontal"
                 android:id="@+id/viewPagerDateTime"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="140dp">
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:text="@string/cta_today"
-                        android:background="@drawable/selector_act_bottom"
-                        android:layout_margin="5dp" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="@string/cta_today"
+                    android:background="@drawable/selector_act_bottom"
+                    android:layout_margin="5dp" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:text="@string/cta_morning"
-                        android:background="@drawable/selector_act_bottom"
-                        android:layout_margin="5dp" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="@string/cta_morning"
+                    android:background="@drawable/selector_act_bottom"
+                    android:layout_margin="5dp" />
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="140dp">
-
-                </LinearLayout>
+                <Button
+                    android:id="@+id/btnCustomDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="@string/cta_custom"
+                    android:background="@drawable/selector_act_bottom"
+                    android:layout_margin="5dp" />
 
             </LinearLayout>
 

@@ -11,6 +11,7 @@
     <string name="cta_data_time">FECHA | HORA</string>
     <string name="cta_today">HOY</string>
     <string name="cta_morning">MAÑANA</string>
+    <string name="cta_custom">OTRO</string>
     <string name="cta_hint_verb_name">Verbo</string>
     <string name="cta_hint_object_name">Objeto</string>
     <string name="register_verb">Registrar verbo</string>

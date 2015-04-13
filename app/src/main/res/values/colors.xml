@@ -3,6 +3,12 @@
     <!-- General -->
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+
+    <!-- Official colors -->
+    <color name="sky_blue">#6ED0F6</color>
+    <color name="blue">#079BCF</color>
+
+
     <color name="color_actionbar">#41ACE2</color>
     <color name="color_fab_dark">#A63B3D</color>
     <color name="color_fab">#EA5355</color>

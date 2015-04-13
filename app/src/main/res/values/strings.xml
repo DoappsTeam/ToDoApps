@@ -5,6 +5,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <!-- Splash Activity -->
+    <string name="splash_title">ToDoApps</string>
+
     <!-- Create Task Asctivity -->
     <string name="cta_verb">VERBO</string>
     <string name="cta_object">OBJETO</string>
